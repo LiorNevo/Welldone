@@ -1,0 +1,14 @@
+<md-fab-toolbar md-open="isOpen" count="count" md-direction="left">
+    <md-fab-trigger class="align-with-text">
+      <md-button aria-label="menu" class="md-fab md-primary">
+        <md-icon>add</md-icon>
+      </md-button>
+    </md-fab-trigger>
+    <md-toolbar>
+      <md-fab-actions class="md-toolbar-tools" layout-align="space-around center">
+        <md-button ng-repeat="state in states" aria-label="{{state.label}}" class="md-icon-button" ui-sref="{{state.ref}}">
+          <md-icon>{{state.icon}}</md-icon>
+        </md-button>
+      </md-fab-actions>
+    </md-toolbar>
+</md-fab-toolbar>

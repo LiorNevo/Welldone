@@ -316,10 +316,6 @@ angular
 								}
 							}
 							/*----------------------------------------------------------------------------------------------------*/
-							scope.logout = function(){
-								alert("logout");
-							}
-							/*----------------------------------------------------------------------------------------------------*/
 							scope.changeAvatar = function(ev){
 								avatarDialog(ev, function(croppedImage){
 									globalAttr.userAvatar = croppedImage;
