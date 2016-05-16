@@ -1,0 +1,49 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="IE=Edge" />
+<!-- Angular Material style sheet -->
+<link
+	href="lib/css/angular-material.min.css"
+	rel="stylesheet" />
+<link
+	href="lib/css/angular-material-icons.css"
+	rel="stylesheet" />
+</head>
+<body ng-app="welldoneApp">
+	<nav-bar></nav-bar>
+	<!-- Angular Material requires Angular.js Libraries -->
+	<script
+		src="lib/js/angular.min.js"></script>
+	<script
+		src="lib/js/angular-animate.min.js"></script>
+	<script
+		src="lib/js/angular-aria.min.js"></script>
+	<script
+		src="lib/js/angular-messages.min.js"></script>
+	<!-- Angular Material Library -->
+	<script
+		src="lib/js/angular-material.min.js"></script>
+	<!-- Core Libs -->
+	<script
+		src="views/core/welldone-app/js/welldone-app.ctrl.js"></script>
+	<script
+		src="views/core/nav-bar/js/nav-bar.dir.js"></script>
+	
+	<script type="text/javascript">
+		var globalAttr = {
+			direction: 'ltr',
+			english: ' English',
+			hebrew:' Hebrew',
+			logout:' Logout',
+			menu:' Menu',
+			changeAvatar: ' Change Avatar',
+			ok: ' Ok',
+			cancel: ' Cancel',
+			selectAnImage: ' Select an Image',
+			croppedImage: ' Cropped Image',
+			userSettings: ' User Settings'
+		};
+	</script>
+</body>
+</html>
