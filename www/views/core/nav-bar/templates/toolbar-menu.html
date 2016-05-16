@@ -26,32 +26,11 @@
 	</md-button> 
 	<md-menu-content width="3" dir='{{globalAttr.direction}}' class="avatar-menu">
 		<md-menu-item>
-				<md-button aria-label="hebrew" ng-href="?language=he">
+				<md-button aria-label="english" ng-click='changeAvatar($event)'>
 					<div flex layout="row">
-						<p class="toolbar-menu-button-text">{{globalAttr.hebrew}}</p>
+						<p class="toolbar-menu-button-text">{{globalAttr.changeAvatar}}</p>
 						<span flex></span>
-						<md-icon class="material-icons toolbar-icons"
-							md-svg-src="views/core/nav-bar/images/israel.svg"></md-icon>
-					</div>
-				</md-button>
-		</md-menu-item> 
-		<md-menu-item>
-				<md-button aria-label="english" ng-href="?language=en">
-					<div flex layout="row">
-						<p class="toolbar-menu-button-text">{{globalAttr.english}}</p>
-						<span flex></span>
-						<md-icon class="material-icons toolbar-icons"
-							md-svg-src="views/core/nav-bar/images/usa.svg"></md-icon>
-					</div>
-				</md-button>
-		</md-menu-item>
-		<md-menu-divider></md-menu-divider>
-		<md-menu-item>
-				<md-button aria-label="logout" ng-click='logout()'>
-					<div flex layout="row">
-						<p class="toolbar-menu-button-text">{{globalAttr.logout}}</p>
-						<span flex></span>
-						<md-icon class="material-icons toolbar-icons">lock</md-icon> 
+						<md-icon class="material-icons toolbar-icons">face</md-icon> 
 					</div>
 				</md-button>
 		</md-menu-item>

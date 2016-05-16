@@ -75,6 +75,11 @@
 	-moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
 	transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
 }
+.ui-view-container {
+  position: relative;
+  height: 65px;
+}
+
 </style>
 <title>Welldone</title>
 <div dir='{{globalAttr.direction}}' ng-cloak layout="column" layout-fill>
@@ -87,7 +92,7 @@
 			<md-icon class="logo-icon" aria-label="Logo" md-svg-src="views/core/nav-bar/images/logo24x24.svg"></md-icon>
 		</md-button>
 		<md-button class="toolbar-icons logo-text" href="/" layout="row">
-          	<p ng-if="(globalAttr.direction == 'rtl')" class="Software">Software</p><p class="Welldone">Welldone</p><p ng-if="(globalAttr.direction != 'rtl')" class="Software">Software</p>
+          	<p ng-if="(globalAttr.direction == 'rtl')" class="Software">Locations</p><p class="Welldone">my</p><p ng-if="(globalAttr.direction != 'rtl')" class="Software">Locations</p>
         </md-button>
         <span flex></span>
         <toolbar-menu>

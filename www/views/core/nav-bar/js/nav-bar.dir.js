@@ -1,4 +1,4 @@
-angular.module('navBarApp', [ 'ngMaterial' ]);
+angular.module('navBarApp', []);
 /*----------------------------------------------------------------------------------------------------*/
 /**
  * Directive
@@ -189,17 +189,64 @@ angular.module('navBarApp', [ 'ngMaterial' ]);
  		return function() {
  			return $q(function(resolve) {
  				resolve(
- 					[{"label":"Startup Assessment","icon":"star_rate","href":"/StartupAssessment","type":"link","subItems":null},
- 					{"label":"Proposal Engine","icon":"pie_chart","href":"/ProposalEngine","type":"link","subItems":null},
- 					{"label":"Administration","icon":"settings","href":"","type":"toggle",
- 						"subItems":[{"label":"Users","icon":"views/core/nav-bar/images/users.svg","href":"/Users","type":"link","subItems":null},
- 								{"label":"Roles","icon":"vpn_key","href":"/Roles","type":"link","subItems":null},
- 								{"label":"Processes","icon":"views/core/nav-bar/images/flow-diagram.svg","href":"/Processes","type":"link","subItems":null}
+ 					[{"label":"Catagories","icon":"layers","sref":"Categories","type":"link","subItems":null},
+ 					{"label":"Locations","icon":"location_on","sref":"Locations","type":"link","subItems":null},
+ 					{"label":"Administration","icon":"settings","sref":"","type":"toggle",
+ 						"subItems":[
+ 						        {"label":"Users","icon":"views/core/nav-bar/images/users.svg","sref":"Users","type":"link","subItems":null},
+ 								{"label":"Roles","icon":"vpn_key","sref":"Roles","type":"link","subItems":null},
  									]
  					}]);
  			})
  		}
  	} ]);
+ angular.module('navBarApp').factory('closeNavBar',
+		 	[ '$mdSidenav', function($mdSidenav) {
+		 		return function() {
+		 			$mdSidenav('sidenav').close();
+		 		}
+		 	} ]);
+ angular.module('navBarApp').factory('avatarDialog',
+			[ '$mdMedia', '$mdDialog',function($mdMedia, $mdDialog) {
+				return function(ev, okFunction) {
+					var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+					var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
+				    /*----------------------------------------------------------------------------------------------------*/
+					var changeAvatarCtrl = function($scope, $mdDialog) {
+						$scope.originalImage='';
+					    $scope.croppedImage='';
+					    $scope.globalAttr = globalAttr;
+					    $scope.handleFileSelect = function(evt) {
+							var file = evt.currentTarget.files[0];
+							var reader = new FileReader();
+							reader.onload = function (evt) {
+								$scope.$apply(function($scope){
+									$scope.originalImage = evt.target.result;
+								});
+							};
+							reader.readAsDataURL(file);
+					    };
+						/*----------------------------------------------------------------------------------------------------*/
+						$scope.cancel = function() {
+							$mdDialog.cancel();
+						};
+						/*----------------------------------------------------------------------------------------------------*/
+						$scope.ok = function() {
+							okFunction($scope.croppedImage);
+							$mdDialog.cancel();
+						};
+					}
+				    /*----------------------------------------------------------------------------------------------------*/
+					$mdDialog.show({
+					    controller: changeAvatarCtrl,
+					    templateUrl: 'views/core/change-avatar/templates/change-avatar.html',
+					    parent: angular.element(document.body),
+					    targetEvent: ev,
+					    clickOutsideToClose: true,
+					    fullscreen: useFullScreen
+					});
+				}
+			} ]);
  /*----------------------------------------------------------------------------------------------------*/
 /**
  * Menu toggle
@@ -250,7 +297,7 @@ angular
 		.module('navBarApp')
 		.directive(
 				'toolbarMenu',
-				[ function() {
+				['avatarDialog', function(avatarDialog) {
 					return {
 						scope : {
 							
@@ -258,14 +305,26 @@ angular
 						templateUrl : 'views/core/nav-bar/templates/toolbar-menu.html',
 						link : function(scope, element, attr) {
 							scope.globalAttr = globalAttr;
-							var avatars = ['views/core/nav-bar/images/male-avatar.svg'];
+							var defaultAvatar = 'views/core/nav-bar/images/male-avatar.svg';
 							/*----------------------------------------------------------------------------------------------------*/
 							scope.getUserAvatar = function(){
-								return avatars[0];
+								if(globalAttr.userAvatar && globalAttr.userAvatar != 'null'){
+									return globalAttr.userAvatar;
+								}
+								else {
+									return defaultAvatar;
+								}
 							}
 							/*----------------------------------------------------------------------------------------------------*/
 							scope.logout = function(){
 								alert("logout");
+							}
+							/*----------------------------------------------------------------------------------------------------*/
+							scope.changeAvatar = function(ev){
+								avatarDialog(ev, function(croppedImage){
+									globalAttr.userAvatar = croppedImage;
+									localStorage.setItem("welldoneUserAvatar", croppedImage);
+								});
 							}
 						}
 					};

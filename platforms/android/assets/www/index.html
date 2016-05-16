@@ -9,9 +9,18 @@
 <link
 	href="lib/css/angular-material-icons.css"
 	rel="stylesheet" />
+<link
+	href="lib/css/anim-in-out.css"
+	rel="stylesheet" />
+<link
+	href="lib/css/image-crop.css"
+	rel="stylesheet" />
 </head>
 <body ng-app="welldoneApp">
-	<nav-bar></nav-bar>
+	<nav-bar>
+		<section flex layout="column" ui-view class="anim-in-out anim-slide-left" data-anim-speed="500" data-anim-sync="true">
+		</section>
+	</nav-bar>
 	<!-- Angular Material requires Angular.js Libraries -->
 	<script
 		src="lib/js/angular.min.js"></script>
@@ -21,29 +30,44 @@
 		src="lib/js/angular-aria.min.js"></script>
 	<script
 		src="lib/js/angular-messages.min.js"></script>
+	<!-- UI Router as required -->
+	<script
+		src="lib/js/ui-router.min.js"></script>
+	<!-- Anim for views -->
+	<script
+		src="lib/js/anim-in-out.js"></script>
+	<!-- Image crop for avatar -->
+	<script
+		src="lib/js/image-crop.dir.js"></script>
 	<!-- Angular Material Library -->
 	<script
 		src="lib/js/angular-material.min.js"></script>
 	<!-- Core Libs -->
 	<script
-		src="views/core/welldone-app/js/welldone-app.ctrl.js"></script>
+		src="views/core/welldone-app/js/welldone-app.rout.js"></script>
 	<script
 		src="views/core/nav-bar/js/nav-bar.dir.js"></script>
+	<script
+		src="views/core/bottom-toolbar/js/bottom-toolbar.dir.js"></script>
+	<!-- Views -->
+	<script
+		src="views/home/js/home.ctrl.js"></script>
+	<script
+		src="views/categories/js/categories.ctrl.js"></script>
+	<script
+		src="views/locations/js/locations.ctrl.js"></script>
 	
 	<script type="text/javascript">
 		var globalAttr = {
 			direction: 'ltr',
-			english: ' English',
-			hebrew:' Hebrew',
-			logout:' Logout',
 			menu:' Menu',
 			changeAvatar: ' Change Avatar',
 			ok: ' Ok',
 			cancel: ' Cancel',
-			selectAnImage: ' Select an Image',
 			croppedImage: ' Cropped Image',
 			userSettings: ' User Settings'
 		};
+		globalAttr.userAvatar = localStorage.getItem("welldoneUserAvatar");
 	</script>
 </body>
 </html>

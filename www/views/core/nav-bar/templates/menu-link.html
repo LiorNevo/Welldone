@@ -7,7 +7,7 @@
 	aria-controls="side-menu-{{item.label}}" 
 	aria-expanded="item"
 	ng-class='(item.selected) ? "active" : ""'
-	href="{{item.href}}">
+	ui-sref="{{item.sref}}">
 	<div layout="row">
 		<md-icon
 			ng-if='item.icon.indexOf("/") < 0' 
