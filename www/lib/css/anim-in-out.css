@@ -1,5 +1,6 @@
 [ui-view] {
   position: relative;
+  overflow: hidden;
 }
 
 .anim-in-out.anim-in-setup.anim-fade, .anim-in-out.anim-in-setup .anim-fade {
@@ -204,8 +205,8 @@
   -webkit-transform: translateY(20px);
       -ms-transform: translateY(20px);
           transform: translateY(20px);
-  -webkit-transition: all 500ms;
-          transition: all 500ms; }
+  -webkit-transition: all 0ms;
+          transition: all 0ms; }
 
 .anim-in-out.anim-out.anim-zoom-out, .anim-in-out.anim-out .anim-zoom-out {
   -webkit-transform: scale(0.95);

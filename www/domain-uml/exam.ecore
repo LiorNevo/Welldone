@@ -6,6 +6,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="locations" upperBound="-1"
           eType="#//Places/Locations" eOpposite="#//Places/Locations/catagories"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+          iD="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Locations">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -13,6 +15,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="coordinates" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="catagories" lowerBound="1"
           upperBound="-1" eType="#//Places/Catagories" eOpposite="#//Places/Catagories/locations"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+          iD="true"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>
