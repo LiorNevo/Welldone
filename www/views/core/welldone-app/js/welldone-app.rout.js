@@ -9,6 +9,7 @@ angular.module('welldoneApp', [
                                  'ngAnimate', 
                                  'anim-in-out',
                                  'ngImgCrop',
+                                 'ngCordova',
                                  'ngMessages']).config(['$stateProvider','$urlRouterProvider',
     function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/');

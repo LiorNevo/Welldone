@@ -7,6 +7,7 @@ angular.module('locApp', []).controller('locCtrl',[
                  'saveLocation',
                  'deleteLocation',
                  '$mdDialog',
+                 '$cordovaEmailComposer',
                  function(
                 		 $scope, 
                 		 closeSideBar, 
@@ -15,7 +16,8 @@ angular.module('locApp', []).controller('locCtrl',[
                 		 loadAllLocations,
                 		 saveLocation,
                 		 deleteLocation,
-                		 $mdDialog){
+                		 $mdDialog,
+                		 $cordovaEmailComposer){
 	closeSideBar();
 	navBarTitle('Locations');
 	toolbarActions([{
@@ -27,6 +29,20 @@ angular.module('locApp', []).controller('locCtrl',[
 	}]);
 	$scope.globalAttr = globalAttr;
 	$scope.locations = loadAllLocations();
+	$scope.viewLocation = function(){
+		if (navigator.vibrate){
+			navigator.vibrate(300);
+			 var email = {
+					    to: 'max@mustermann.de',
+					    cc: 'erika@mustermann.de',
+					    subject: 'Cordova Icons',
+					    body: 'How are you? Nice greetings from Leipzig'
+					  };
+
+					 $cordovaEmailComposer.open(email);
+		}
+	}
+	
 	/*----------------------------------------------------------------------------------------------------*/
 	$scope.deleteLocation = function(location, ev, index) {
 		var confirmDelete = $mdDialog
