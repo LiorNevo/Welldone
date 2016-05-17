@@ -1,3 +1,45 @@
-<h1>categories</h1>
+<style>
+.category-tile{
+	background: white;
+}
+md-grid-tile-header {
+	background: white !important;
+}
+.buttons {
+	margin-right: 40px !important;
+}
+</style>
+<md-grid-list
+       md-cols="2" 
+       md-row-height="16:9"
+       md-gutter="8px">
+   <md-grid-tile ng-repeat="category in categories"
+                 md-rowspan="2"
+                 md-colspan="1"
+                 md-whiteframe="1"
+                 layout="column"
+                 class="category-tile" >
+        <md-grid-tile-header layout-align="center center">
+        	<md-button class="md-fab md-raised md-mini fab-top buttons" ng-click="saveCategory(category, $event)">
+				<md-icon class="material-icons">save</md-icon>
+			</md-button>
+		    <md-button class="md-fab md-raised md-mini fab-top" ng-click="deleteCategory(category, $event, $index)">
+				<md-icon class="material-icons">delete</md-icon>
+			</md-button>
+		</md-grid-tile-header>
+		<form name="categoryForm" layout="column" laytout-padding>
+			<md-input-container laytout-align="center center">
+				<label>{{globalAttr.categoryName}}</label> 
+				<input required name="categoryName" ng-model="category.name">
+				<div ng-messages="categoryForm.categoryName.$error" multiple md-auto-hide="false">
+					<div ng-message="required">{{globalAttr.required}}</div>
+				</div> 
+			</md-input-container>
+		</form>
+		<md-grid-tile-footer>
+			<h3>{{category.name}}</h3>
+		</md-grid-tile-footer>
+   </md-grid-tile>
+</md-grid-list>
 <span flex></span>
 <bottom-toolbar current-state="Categories"></bottom-toolbar>

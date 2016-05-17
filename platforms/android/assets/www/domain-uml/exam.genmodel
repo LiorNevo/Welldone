@@ -10,6 +10,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exam.ecore#//Places/Catagories/name"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference exam.ecore#//Places/Catagories/locations"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exam.ecore#//Places/Catagories/id"/>
       </genClasses>
       <genClasses ecoreClass="exam.ecore#//Places/Locations">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exam.ecore#//Places/Locations/name"/>
@@ -17,6 +18,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exam.ecore#//Places/Locations/coordinates"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference exam.ecore#//Places/Locations/catagories"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute exam.ecore#//Places/Locations/id"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

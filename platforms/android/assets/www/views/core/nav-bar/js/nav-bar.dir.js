@@ -19,8 +19,10 @@ angular.module('navBarApp', []);
  			'$scope',
  			'$mdSidenav',
  			'loadNavBar',
- 			function($scope, $mdSidenav, loadNavBar) {
+ 			'navBarTitle',
+ 			function($scope, $mdSidenav, loadNavBar, navBarTitle) {
  				$scope.globalAttr = globalAttr;
+ 				$scope.navBarTitle = navBarTitle;
  				/*----------------------------------------------------------------------------------------------------*/
  				$scope.toggleSidenav = function() {
  					return $mdSidenav(
@@ -200,10 +202,30 @@ angular.module('navBarApp', []);
  			})
  		}
  	} ]);
- angular.module('navBarApp').factory('closeNavBar',
+ angular.module('navBarApp').factory('closeSideBar',
 		 	[ '$mdSidenav', function($mdSidenav) {
 		 		return function() {
 		 			$mdSidenav('sidenav').close();
+		 		}
+		 	} ]);
+ angular.module('navBarApp').factory('navBarTitle',
+		 	[ function() {
+		 		var title = 'Home';
+		 		return function(newTitle) {
+		 			if (newTitle){
+		 				title = newTitle;
+		 			}
+		 			return title;
+		 		}
+		 	} ]);
+ angular.module('navBarApp').factory('toolbarActions',
+		 	[ function() {
+		 		var actions = [];
+		 		return function(newActions) {
+		 			if (newActions){
+		 				actions = newActions;
+		 			}
+		 			return actions;
 		 		}
 		 	} ]);
  angular.module('navBarApp').factory('avatarDialog',
@@ -297,13 +319,14 @@ angular
 		.module('navBarApp')
 		.directive(
 				'toolbarMenu',
-				['avatarDialog', function(avatarDialog) {
+				['avatarDialog','toolbarActions', function(avatarDialog, toolbarActions) {
 					return {
 						scope : {
 							
 						},
 						templateUrl : 'views/core/nav-bar/templates/toolbar-menu.html',
 						link : function(scope, element, attr) {
+							scope.toolbarActions = toolbarActions;
 							scope.globalAttr = globalAttr;
 							var defaultAvatar = 'views/core/nav-bar/images/male-avatar.svg';
 							/*----------------------------------------------------------------------------------------------------*/
@@ -314,10 +337,6 @@ angular
 								else {
 									return defaultAvatar;
 								}
-							}
-							/*----------------------------------------------------------------------------------------------------*/
-							scope.logout = function(){
-								alert("logout");
 							}
 							/*----------------------------------------------------------------------------------------------------*/
 							scope.changeAvatar = function(ev){

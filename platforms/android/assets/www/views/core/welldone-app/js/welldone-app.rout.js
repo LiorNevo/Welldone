@@ -8,7 +8,8 @@ angular.module('welldoneApp', [
                                  'locApp', 
                                  'ngAnimate', 
                                  'anim-in-out',
-                                 'ngImgCrop']).config(['$stateProvider','$urlRouterProvider',
+                                 'ngImgCrop',
+                                 'ngMessages']).config(['$stateProvider','$urlRouterProvider',
     function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/');
 	$stateProvider

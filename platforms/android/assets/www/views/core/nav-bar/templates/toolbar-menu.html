@@ -25,6 +25,16 @@
 		<img class="nav-bar-user-avatar" ng-src="{{getUserAvatar()}}" />
 	</md-button> 
 	<md-menu-content width="3" dir='{{globalAttr.direction}}' class="avatar-menu">
+		<md-menu-item ng-repeat="action in toolbarActions()">
+			<md-button aria-label="action.name" ng-click="action.action()">
+				<div flex layout="row">
+					<p class="toolbar-menu-button-text">{{action.name}}</p>
+					<span flex></span>
+					<md-icon class="material-icons toolbar-icons">{{action.icon}}</md-icon>
+				</div>
+			</md-button>
+		</md-menu-item>
+		<md-menu-divider ng-if="(toolbarActions().length > 0)"></md-menu-divider>
 		<md-menu-item>
 				<md-button aria-label="english" ng-click='changeAvatar($event)'>
 					<div flex layout="row">

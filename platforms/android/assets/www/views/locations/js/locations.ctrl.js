@@ -1,3 +1,4 @@
-angular.module('locApp', []).controller('locCtrl',['$scope','closeNavBar', function($scope, closeNavBar){
-	closeNavBar();
+angular.module('locApp', []).controller('locCtrl',['$scope','closeSideBar','navBarTitle', function($scope, closeSideBar, navBarTitle){
+	closeSideBar();
+	navBarTitle('Locations');
 }])

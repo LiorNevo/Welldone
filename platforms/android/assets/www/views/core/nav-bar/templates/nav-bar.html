@@ -49,17 +49,10 @@
 .main-content {
 	background-color: #b2cedf;
 }
-.Welldone{
+.title{
 	color: #E0E5E8;
 	font-size: 14px;
     font-weight: 300;
-	font-family: sans-serif;
-}
-.Software{
-	font-size: 14px;
-    font-weight: 300;
-	margin: 4px;
-	color: #E0E5E8;
 	font-family: sans-serif;
 }
 .expand-icon.toggled{
@@ -88,11 +81,11 @@
 		<md-button ng-click="toggleSidenav()" hide-gt-md class="md-icon-button toolbar-icons">
 			<md-icon aria-label="Menu" class="material-icons">menu</md-icon> 
 		</md-button>
-		<md-button class="md-icon-button toolbar-icons logo-button" href='/'>
+		<md-button class="md-icon-button toolbar-icons logo-button">
 			<md-icon class="logo-icon" aria-label="Logo" md-svg-src="views/core/nav-bar/images/logo24x24.svg"></md-icon>
 		</md-button>
 		<md-button class="toolbar-icons logo-text" href="/" layout="row">
-          	<p ng-if="(globalAttr.direction == 'rtl')" class="Software">Locations</p><p class="Welldone">my</p><p ng-if="(globalAttr.direction != 'rtl')" class="Software">Locations</p>
+          	<p class="title">{{navBarTitle()}}</p>
         </md-button>
         <span flex></span>
         <toolbar-menu>
