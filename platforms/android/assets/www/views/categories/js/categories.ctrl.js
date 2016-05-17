@@ -23,6 +23,7 @@ angular
 							}]);
 							$scope.globalAttr = globalAttr;
 							$scope.categories = loadAllCategories();
+							/*----------------------------------------------------------------------------------------------------*/
 							$scope.deleteCategory = function(category, ev, index) {
 								var confirmDelete = $mdDialog
 										.confirm()
@@ -42,22 +43,37 @@ angular
 												function() {
 												});
 							}
-							$scope.saveCategory = function(category, ev) {
-								var confirmDelete = $mdDialog
-										.confirm()
-										.title('Save Category?')
-										.textContent(
-												'Are you sure you want to save ' + category.name + '?')
-										.ariaLabel('Save Category')
-										.targetEvent(ev).ok('Yes, Save')
-										.cancel('No');
-								$mdDialog
-										.show(confirmDelete)
-										.then(
-												function() {
-													saveCategory(category);
-												},
-												function() {
-												});
+							/*----------------------------------------------------------------------------------------------------*/
+							$scope.saveCategory = function(category, ev, inValid) {
+								if (!inValid){
+									var confirmSave = $mdDialog
+									.confirm()
+									.title('Save Category?')
+									.textContent(
+											'Are you sure you want to save ' + category.name + '?')
+									.ariaLabel('Save Category')
+									.targetEvent(ev).ok('Yes, Save')
+									.cancel('No');
+									$mdDialog
+									.show(confirmSave)
+									.then(
+											function() {
+												saveCategory(category);
+											},
+											function() {
+											});
+								}
+								else {
+									var notValid = $mdDialog
+									.alert()
+									.clickOutsideToClose(true)
+									.title('Not All Fields Are Completed')
+									.textContent(
+											'You must complete all fields in order to save')
+									.ariaLabel('Alert')
+									.targetEvent(ev).ok('Ok, Got it!')
+									$mdDialog
+									.show(notValid);
+								}
 							}
 						} ])

@@ -18,7 +18,7 @@
 </head>
 <body ng-app="welldoneApp">
 	<nav-bar>
-		<section flex layout="column" ui-view class="anim-in-out anim-slide-left" data-anim-speed="500" data-anim-sync="true">
+		<section flex layout="column" ui-view class="anim-in-out anim-slide-below-fade" data-anim-speed="300">
 		</section>
 	</nav-bar>
 	<!-- Angular Material requires Angular.js Libraries -->
@@ -42,6 +42,9 @@
 	<!-- Angular Material Library -->
 	<script
 		src="lib/js/angular-material.min.js"></script>
+	<!-- Cordova bridge -->
+	<script src="lib/js/ng-cordova.min.js"></script>
+	<script src="cordova.js"></script> 
 	<!-- Core Libs -->
 	<script
 		src="views/core/welldone-app/js/welldone-app.rout.js"></script>
@@ -69,6 +72,7 @@
 			required: ' This Field Is Required',
 			required: ' This Field Is Required',
 			categoryName : 'Category Name',
+			locationName : 'Location Name',
 			croppedImage: ' Cropped Image',
 			userSettings: ' User Settings'
 		};

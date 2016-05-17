@@ -9,6 +9,18 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.exam.welldone"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.exam.welldone"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.exam.welldone"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.exam.welldone"
+        },
+        "cordova-plugin-email-composer": {
+            "PACKAGE_NAME": "com.exam.welldone"
         }
     },
     "dependent_plugins": {}
