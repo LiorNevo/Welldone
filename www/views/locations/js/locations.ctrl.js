@@ -9,6 +9,7 @@ angular.module('locApp', []).controller('locCtrl',[
                  '$mdMedia',
                  'locationDialogCtrl',
                  'loadAllCategories',
+                 'mapCtrl',
                  function(
                 		 $scope, 
                 		 closeSideBar, 
@@ -19,7 +20,8 @@ angular.module('locApp', []).controller('locCtrl',[
                 		 $mdDialog,
                 		 $mdMedia,
                 		 locationDialogCtrl,
-                		 loadAllCategories){
+                		 loadAllCategories,
+                		 mapCtrl){
 	closeSideBar();
 	navBarTitle('Locations');
 	toolbarActions([{
@@ -54,7 +56,7 @@ angular.module('locApp', []).controller('locCtrl',[
 		    clickOutsideToClose: true,
 		    fullscreen: useFullScreen,
 		    locals: {
-		    	location: location,
+		    	location: location
 		    }
 		});
 	}
@@ -97,5 +99,22 @@ angular.module('locApp', []).controller('locCtrl',[
 			return false;
 		}
 		
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	$scope.clickToMap = function(ev, location){
+		var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
+	    /*----------------------------------------------------------------------------------------------------*/
+		$mdDialog.show({
+		    controller: mapCtrl(),
+		    templateUrl: 'views/locations/templates/map-dialog.html',
+		    parent: angular.element(document.body),
+		    targetEvent: ev,
+		    clickOutsideToClose: true,
+		    fullscreen: useFullScreen,
+		    locals: {
+		    	location: location
+		    }
+		});
 	}
 }])

@@ -21,16 +21,22 @@ md-grid-tile-header {
 	color: #D1D1D1 !important;
 }
 .animate-hide {
-  transition: all linear 0.5s;
-  line-height: 20px;
-  opacity: 1;
-  padding: 10px;
+	transition: all linear 0.5s;
+	line-height: 20px;
+	opacity: 1;
+	padding: 10px;
 }
 
 .animate-hide.ng-hide {
-  line-height: 0;
-  opacity: 0;
-  padding: 0 10px;
+	line-height: 0;
+	opacity: 0;
+	padding: 0 10px;
+}
+.md-no-style {
+	padding-left: 60px !important;
+}
+.map-button{
+	left: 0px;
 }
 </style>
 <section layout="row" layout-align="center center" layout-padding>
@@ -39,7 +45,7 @@ md-grid-tile-header {
 		<input ng-model="search.name"> 
 	</md-input-container>
 	<md-button class="md-fab md-raised md-mini fab-top" ng-click="toggleGoupByCategories()" ng-class="(groupByCategories) ? 'category-group' : ''">
-		<md-icon class="material-icons">queue</md-icon>
+		<md-icon class="material-icons">group_work</md-icon>
 	</md-button>
 </section>
 <md-content flex class="locations-content" >
@@ -51,7 +57,9 @@ md-grid-tile-header {
 			class="md-3-line location-item" 
 			ng-repeat="location in locations | filter:search:strict | filter:{categories: category.name}| orderBy:'name'"
 			ng-click="viewLocation(location, $event)">
-			<md-icon>location_on</md-icon>
+			<md-button class="md-fab md-raised md-mini fab-top md-secondary map-button" ng-click="clickToMap($event, location)">
+				<md-icon class="material-icons">location_on</md-icon>
+			</md-button>
 			<div class="md-list-item-text" layout="column">
 				<h3>{{location.name}}</h3>
 				<h4>{{location.address}}</h4>
@@ -68,8 +76,11 @@ md-grid-tile-header {
 			md-whiteframe="1" 
 			class="md-3-line location-item" 
 			ng-repeat="location in locations | filter:search:strict | orderBy:'name'"
-			ng-click="viewLocation(location, $event)">
-			<md-icon>location_on</md-icon>
+			ng-click="viewLocation(location, $event)"
+			layout="row">
+			<md-button class="md-fab md-raised md-mini fab-top md-secondary map-button" ng-click="clickToMap($event, location)">
+				<md-icon class="material-icons">location_on</md-icon>
+			</md-button>
 			<div class="md-list-item-text" layout="column">
 				<h3>{{location.name}}</h3>
 				<h4>{{location.address}}</h4>

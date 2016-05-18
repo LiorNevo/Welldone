@@ -195,8 +195,7 @@ angular.module('navBarApp', []);
  					{"label":"Locations","icon":"location_on","sref":"Locations","type":"link","subItems":null},
  					{"label":"Administration","icon":"settings","sref":"","type":"toggle",
  						"subItems":[
- 						        {"label":"Users","icon":"views/core/nav-bar/images/users.svg","sref":"Users","type":"link","subItems":null},
- 								{"label":"Roles","icon":"vpn_key","sref":"Roles","type":"link","subItems":null},
+ 						        {"label":"Change Avatar","icon":"face","sref":"ChangeAvatar","type":"link","subItems":null},
  									]
  					}]);
  			})

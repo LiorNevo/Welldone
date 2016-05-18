@@ -5,10 +5,12 @@ angular.module('welldoneApp', [
                                  'homeApp', 
                                  'bottomToolbarApp', 
                                  'catApp', 
-                                 'locApp', 
+                                 'locApp',
+                                 'avatarApp', 
                                  'ngAnimate', 
                                  'anim-in-out',
                                  'ngImgCrop',
+                                 'mapApp',
                                  'ngMessages']).config(['$stateProvider','$urlRouterProvider',
     function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/');
@@ -30,5 +32,11 @@ angular.module('welldoneApp', [
 		url: '/Locations',
 		templateUrl : 'views/locations/templates/locations.html',
 		controller: 'locCtrl'
+	})
+	
+	.state('ChangeAvatar', {
+		url: '/ChangeAvatar',
+		templateUrl : 'views/core/change-avatar/templates/change-avatar.html',
+		controller: 'avatarCtrl'
 	});
 }])

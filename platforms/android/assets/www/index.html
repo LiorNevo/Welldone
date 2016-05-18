@@ -12,8 +12,13 @@
 <link
 	href="lib/css/anim-in-out.css"
 	rel="stylesheet" />
+<!-- Avatar -->
 <link
 	href="lib/css/image-crop.css"
+	rel="stylesheet" />
+<!-- Maps -->
+<link
+	href="lib/css/leaflet.css"
 	rel="stylesheet" />
 </head>
 <body ng-app="welldoneApp">
@@ -42,6 +47,9 @@
 	<!-- Angular Material Library -->
 	<script
 		src="lib/js/angular-material.min.js"></script>
+	<!-- Maps -->
+	<script
+		src="lib/js/leaflet.min.js"></script>
 	<!-- Cordova bridge -->
 	<script src="cordova.js"></script> 
 	<!-- Core Libs -->
@@ -53,6 +61,8 @@
 		src="views/core/nav-bar/js/nav-bar.dir.js"></script>
 	<script
 		src="views/core/bottom-toolbar/js/bottom-toolbar.dir.js"></script>
+	<script
+		src="views/core/change-avatar/js/change-avatar.ctrl.js"></script>
 	<!-- Views -->
 	<script
 		src="views/home/js/home.ctrl.js"></script>
@@ -62,6 +72,11 @@
 		src="views/locations/js/locations.ctrl.js"></script>
 	<script
 		src="views/locations/js/locations-dialog.ctrl.js"></script>
+	<script
+		src="views/locations/js/map.ctrl.js"></script>
+	<script
+		src="views/map/js/map.dir.js"></script>
+	
 	
 	<script type="text/javascript">
 		var globalAttr = {
