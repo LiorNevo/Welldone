@@ -1,0 +1,76 @@
+<style>
+.main-content{
+	background-color: #B2CEDF;
+}
+.main-whiteframe{
+	background-color: white;
+}
+md-option[selected] {
+	font-weight: bolder;
+	font-style: italic;
+}
+</style>
+<section layout="column"  dir="{{globalAttr.direction}}" flex>
+	<md-toolbar flex="none" layout="column"
+		class="md-whiteframe-1dp md-accent">
+		<div class="md-toolbar-tools">
+			<md-button ng-click="cancel()"
+				class="md-icon-button toolbar-icons"> <md-icon
+				aria-label="Menu" class="material-icons">clear</md-icon> 
+			</md-button>
+			{{location.name}}
+		</div>
+	</md-toolbar>
+	<md-content layout-padding class="main-content" flex>
+		<md-whiteframe class="md-whiteframe-1dp main-whiteframe"
+				layout-padding layout="column" flex>
+				<form name="locationForm" layout="column" laytout-padding>
+					<md-input-container laytout-align="center center">
+						<label>{{globalAttr.locationName}}</label> 
+						<input required name="locationName" ng-model="location.name">
+						<div ng-messages="locationForm.locationName.$error" multiple md-auto-hide="false">
+							<div ng-message="required">{{globalAttr.required}}</div>
+						</div> 
+					</md-input-container>
+					<md-input-container laytout-align="center center">
+						<label>{{globalAttr.address}}</label> 
+						<input required name="locationAddress" ng-model="location.address">
+						<div ng-messages="locationForm.locationAddress.$error" multiple md-auto-hide="false">
+							<div ng-message="required">{{globalAttr.required}}</div>
+						</div> 
+					</md-input-container>
+					<md-input-container laytout-align="center center">
+						<label>{{globalAttr.coordinates}}</label> 
+						<input required name="locationCoordinates" ng-model="location.coordinates">
+						<div ng-messages="locationForm.locationCoordinates.$error" multiple md-auto-hide="false">
+							<div ng-message="required">{{globalAttr.required}}</div>
+						</div> 
+					</md-input-container>
+					<md-input-container>
+				        <label>{{globalAttr.categories}}</label>
+				        <md-select ng-model="location.categories" multiple required name="locationCategories" >
+				          <md-optgroup>
+				            <md-option
+				            	ng-value="category.name" 
+				            	ng-repeat="category in categories">
+				            	{{category.name}}
+				            </md-option>
+				          </md-optgroup>
+				        </md-select>
+				        <div ng-messages="locationForm.locationCategories.$error" multiple md-auto-hide="false">
+							<div ng-message="required">{{globalAttr.required}}</div>
+						</div> 
+				    </md-input-container>
+				</form>
+		</md-whiteframe>
+	</md-content>
+	<md-dialog-actions flex="none" layout="row">
+	      <md-button ng-click="cancel()">
+	       	{{globalAttr.back}}
+	      </md-button>
+	      <span flex></span>
+	      <md-button ng-click="save($event, locationForm.$invalid)">
+	        {{globalAttr.save}}
+	      </md-button>
+	</md-dialog-actions>
+</section>

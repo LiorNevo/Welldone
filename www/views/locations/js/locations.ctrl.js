@@ -4,43 +4,59 @@ angular.module('locApp', []).controller('locCtrl',[
                  'navBarTitle',
                  'toolbarActions',
                  'loadAllLocations',
-                 'saveLocation',
                  'deleteLocation',
                  '$mdDialog',
-                 '$cordovaEmailComposer',
+                 '$mdMedia',
+                 'locationDialogCtrl',
+                 'loadAllCategories',
                  function(
                 		 $scope, 
                 		 closeSideBar, 
                 		 navBarTitle,
                 		 toolbarActions,
                 		 loadAllLocations,
-                		 saveLocation,
                 		 deleteLocation,
                 		 $mdDialog,
-                		 $cordovaEmailComposer){
+                		 $mdMedia,
+                		 locationDialogCtrl,
+                		 loadAllCategories){
 	closeSideBar();
 	navBarTitle('Locations');
 	toolbarActions([{
 		name: 'Add New Location',
 		action: function(){
-			$scope.locations.push({});
+			if ($scope.checkCategories()){
+				$scope.locations.push({});
+			}
 		},
-		icon: 'add'
+		icon: 'add_location'
 	}]);
 	$scope.globalAttr = globalAttr;
 	$scope.locations = loadAllLocations();
-	$scope.viewLocation = function(){
+	$scope.allCategories = loadAllCategories();
+	$scope.groupByCategories = false;
+	$scope.toggleGoupByCategories = function(){
+		$scope.groupByCategories = !$scope.groupByCategories;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	$scope.viewLocation = function(location, ev){
 		if (navigator.vibrate){
 			navigator.vibrate(300);
-			 var email = {
-					    to: 'max@mustermann.de',
-					    cc: 'erika@mustermann.de',
-					    subject: 'Cordova Icons',
-					    body: 'How are you? Nice greetings from Leipzig'
-					  };
-
-					 $cordovaEmailComposer.open(email);
 		}
+		var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
+	    /*----------------------------------------------------------------------------------------------------*/
+		$mdDialog.show({
+		    controller: locationDialogCtrl(),
+		    templateUrl: 'views/locations/templates/location-dialog.html',
+		    parent: angular.element(document.body),
+		    targetEvent: ev,
+		    clickOutsideToClose: true,
+		    fullscreen: useFullScreen,
+		    locals: {
+		    	location: location,
+		    }
+		});
 	}
 	
 	/*----------------------------------------------------------------------------------------------------*/
@@ -64,36 +80,22 @@ angular.module('locApp', []).controller('locCtrl',[
 						});
 	}
 	/*----------------------------------------------------------------------------------------------------*/
-	$scope.saveLocation = function(location, ev, inValid) {
-		if (!inValid){
-			var confirmSave = $mdDialog
-			.confirm()
-			.title('Save Location?')
-			.textContent(
-					'Are you sure you want to save ' + location.name + '?')
-			.ariaLabel('Save Location')
-			.targetEvent(ev).ok('Yes, Save')
-			.cancel('No');
-			$mdDialog
-			.show(confirmSave)
-			.then(
-					function() {
-						saveLocation(location);
-					},
-					function() {
-					});
+	$scope.checkCategories = function(){
+		if (loadAllCategories().length > 0){
+			return true;
 		}
 		else {
-			var notValid = $mdDialog
+			var addCategoryFirst = $mdDialog
 			.alert()
 			.clickOutsideToClose(true)
-			.title('Not All Fields Are Completed')
+			.title('No Categories Available')
 			.textContent(
-					'You must complete all fields in order to save')
-			.ariaLabel('Alert')
-			.targetEvent(ev).ok('Ok, Got it!')
+					'You should first add a category then add a location')
+			.ariaLabel('Alert').ok('Ok, Got it!')
 			$mdDialog
-			.show(notValid);
+			.show(addCategoryFirst);
+			return false;
 		}
+		
 	}
 }])

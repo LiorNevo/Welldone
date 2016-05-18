@@ -14,76 +14,71 @@ md-grid-tile-header {
 .inactive-button {
 	color: #D1D1D1 !important;
 }
+.category-group {
+    background-color: #D6E5EE !important;
+}
+.category-group > md-icon {
+	color: #D1D1D1 !important;
+}
+.animate-hide {
+  transition: all linear 0.5s;
+  line-height: 20px;
+  opacity: 1;
+  padding: 10px;
+}
+
+.animate-hide.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
+}
 </style>
-<md-content flex class="locations-content">
-<md-list layout-padding>
-	<md-list-item 
-		md-whiteframe="1" 
-		class="md-3-line location-item" 
-		ng-repeat="location in locations"
-		ng-click="viewLocation(location, $event)">
-		<md-icon>location_on</md-icon>
-		<div class="md-list-item-text" layout="column">
-			<h3>{{location.name}}</h3>
-			<h4>{{location.address}}</h4>
-			<p>{{location.coordinates}}</p>
-		</div>
-	</md-list-item>
-</md-list>	
-	<!-- <md-grid-list
-	       md-cols="2" 
-	       md-row-height="7:9"
-	       md-gutter="8px">
-	   <md-grid-tile ng-repeat="location in locations"
-	                 md-rowspan="2"
-	                 md-colspan="1"
-	                 md-whiteframe="1"
-	                 layout="column"
-	                 class="location-tile" >
-	        <md-grid-tile-header layout-align="center center">
-	        	<md-button class="md-fab md-raised md-mini fab-top buttons" 
-	        		ng-click="saveLocation(location, $event, locationForm.$invalid)">
-					<md-icon class="material-icons" 
-						ng-class="(locationForm.$invalid) ? 'inactive-button' : ''">save</md-icon>
-				</md-button>
-			    <md-button class="md-fab md-raised md-mini fab-top" ng-click="deleteLocation(location, $event, $index)">
-					<md-icon class="material-icons">delete</md-icon>
-				</md-button>
-			</md-grid-tile-header>
-			<form name="locationForm" layout="column" laytout-padding>
-				<md-input-container laytout-align="center center">
-					<label>{{globalAttr.locationName}}</label> 
-					<input required name="locationName" ng-model="location.name">
-					<div ng-messages="locationForm.locationName.$error" multiple md-auto-hide="false">
-						<div ng-message="required">{{globalAttr.required}}</div>
-					</div> 
-				</md-input-container>
-				<md-input-container laytout-align="center center">
-					<label>{{globalAttr.address}}</label> 
-					<input required name="locationAddress" ng-model="location.address">
-					<div ng-messages="locationForm.locationAddress.$error" multiple md-auto-hide="false">
-						<div ng-message="required">{{globalAttr.required}}</div>
-					</div> 
-				</md-input-container>
-				<md-input-container laytout-align="center center">
-					<label>{{globalAttr.coordinates}}</label> 
-					<input required name="locationCoordinates" ng-model="location.coordinates">
-					<div ng-messages="locationForm.locationCoordinates.$error" multiple md-auto-hide="false">
-						<div ng-message="required">{{globalAttr.required}}</div>
-					</div> 
-				</md-input-container>
-				<md-input-container laytout-align="center center">
-					<label>{{globalAttr.categories}}</label> 
-					<input required name="locationCategories" ng-model="location.categories">
-					<div ng-messages="locationForm.locationCategories.$error" multiple md-auto-hide="false">
-						<div ng-message="required">{{globalAttr.required}}</div>
-					</div> 
-				</md-input-container>
-			</form>
-			<md-grid-tile-footer>
+<section layout="row" layout-align="center center" layout-padding>
+	<md-input-container flex> 
+		<label>{{globalAttr.search}}</label>
+		<input ng-model="search.name"> 
+	</md-input-container>
+	<md-button class="md-fab md-raised md-mini fab-top" ng-click="toggleGoupByCategories()" ng-class="(groupByCategories) ? 'category-group' : ''">
+		<md-icon class="material-icons">queue</md-icon>
+	</md-button>
+</section>
+<md-content flex class="locations-content" >
+	<md-list layout-padding class="animate-hide"
+			ng-show="(groupByCategories)" ng-repeat="category in allCategories">
+		<md-subheader class="md-no-sticky">{{category.name}}</md-subheader>
+		<md-list-item 
+			md-whiteframe="1" 
+			class="md-3-line location-item" 
+			ng-repeat="location in locations | filter:search:strict | filter:{categories: category.name}| orderBy:'name'"
+			ng-click="viewLocation(location, $event)">
+			<md-icon>location_on</md-icon>
+			<div class="md-list-item-text" layout="column">
 				<h3>{{location.name}}</h3>
-			</md-grid-tile-footer>
-	   </md-grid-tile>
-	</md-grid-list>-->
+				<h4>{{location.address}}</h4>
+				<p>{{location.coordinates}}</p>
+			</div>
+			<md-button class="md-fab md-raised md-mini fab-top md-secondary" ng-click="deleteLocation(location, $event, $index)">
+				<md-icon class="material-icons">delete</md-icon>
+			</md-button>
+		</md-list-item>
+	</md-list>
+	<md-list layout-padding class="animate-hide"
+			ng-hide="(groupByCategories)">
+		<md-list-item 
+			md-whiteframe="1" 
+			class="md-3-line location-item" 
+			ng-repeat="location in locations | filter:search:strict | orderBy:'name'"
+			ng-click="viewLocation(location, $event)">
+			<md-icon>location_on</md-icon>
+			<div class="md-list-item-text" layout="column">
+				<h3>{{location.name}}</h3>
+				<h4>{{location.address}}</h4>
+				<p>{{location.coordinates}}</p>
+			</div>
+			<md-button class="md-fab md-raised md-mini fab-top md-secondary" ng-click="deleteLocation(location, $event, $index)">
+				<md-icon class="material-icons">delete</md-icon>
+			</md-button>
+		</md-list-item>
+	</md-list>
 </md-content>
 <bottom-toolbar current-state="Locations"></bottom-toolbar>
