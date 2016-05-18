@@ -15,12 +15,16 @@ md-grid-tile-header {
 	color: #D1D1D1 !important;
 }
 </style>
+<md-input-container> 
+	<label>{{globalAttr.search}}</label>
+	<input ng-model="search.name"> 
+</md-input-container>
 <md-content flex class="categories-content">
 	<md-grid-list
 	       md-cols="2" 
 	       md-row-height="16:9"
 	       md-gutter="8px">
-	   <md-grid-tile ng-repeat="category in categories"
+	   <md-grid-tile ng-repeat="category in categories | filter:search:strict"
 	                 md-rowspan="2"
 	                 md-colspan="1"
 	                 md-whiteframe="1"

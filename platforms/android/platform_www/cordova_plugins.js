@@ -36,6 +36,14 @@ module.exports = [
             "cordova.plugins.email",
             "plugin.email"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-email/www/email_composer.js",
+        "id": "cordova-plugin-email.EmailComposer",
+        "clobbers": [
+            "cordova.plugins.email",
+            "plugin.email"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -45,7 +53,8 @@ module.exports.metadata =
     "cordova-plugin-vibration": "2.1.1",
     "cordova-plugin-dialogs": "1.2.1",
     "cordova-plugin-statusbar": "2.1.3",
-    "cordova-plugin-email-composer": "0.8.3"
+    "cordova-plugin-email-composer": "0.8.3",
+    "cordova-plugin-email": "1.1.0"
 };
 // BOTTOM OF METADATA
 });
