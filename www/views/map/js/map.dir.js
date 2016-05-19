@@ -9,22 +9,26 @@ angular.module('mapApp',[]).directive('myMap', [function() {
 			
 		}],
 		link : function(scope, elem, attr) {
-			var mymap = L.map('mapid').setView([32.48131, 34.98339], 13);
-
+			/*----------------------------------------------------------------------------------------------------*/
+			var mymap = L.map('mapid').setView([32.48131, 34.98339], 15);
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
 				maxZoom: 18,
 				attribution: '',
 				id: 'mapbox.streets'
 			}).addTo(mymap);
-
-			var popup = L.popup();
+			/*----------------------------------------------------------------------------------------------------*/
+			var marker;
 			function onMapClick(e) {
-				popup
-					.setLatLng(e.latlng)
-					.setContent("You clicked the map at " + e.latlng.toString())
-					.openOn(mymap);
+				if (!marker){
+					marker = L.marker(e.latlng);
+					marker.addTo(mymap);
+				}
+				else {
+					marker.setLatLng(e.latlng);
+					marker.update();
+				}
 			}
-
+			/*----------------------------------------------------------------------------------------------------*/
 			mymap.on('click', onMapClick);
 		}
 	}
