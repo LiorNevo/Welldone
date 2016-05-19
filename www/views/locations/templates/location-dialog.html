@@ -40,8 +40,9 @@ md-option[selected] {
 						</div> 
 					</md-input-container>
 					<md-input-container laytout-align="center center">
-						<label>{{globalAttr.coordinates}}</label> 
-						<input required name="locationCoordinates" ng-model="location.coordinates">
+						<label>{{globalAttr.coordinates}}</label>
+						<md-icon class="material-icons" ng-click="clickToMap($event, location)">location_on</md-icon> 
+						<input required name="locationCoordinates" ng-click="clickToMap($event, location)" disabled value="{{location.coordinates.lat.toFixed(2) + ' , ' + location.coordinates.lng.toFixed(2)}}">
 						<div ng-messages="locationForm.locationCoordinates.$error" multiple md-auto-hide="false">
 							<div ng-message="required">{{globalAttr.required}}</div>
 						</div> 

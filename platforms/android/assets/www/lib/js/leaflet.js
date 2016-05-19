@@ -7462,13 +7462,13 @@ L.Map.Tap = L.Handler.extend({
 		}
 
 		// simulate long hold but setting a timeout
-		this._holdTimeout = setTimeout(L.bind(function () {
-			if (this._isTapValid()) {
-				this._fireClick = false;
-				this._onUp();
-				this._simulateEvent('contextmenu', first);
-			}
-		}, this), 1000);
+//		this._holdTimeout = setTimeout(L.bind(function () {
+//			if (this._isTapValid()) {
+//				this._fireClick = false;
+//				this._onUp();
+//				this._simulateEvent('contextmenu', first);
+//			}
+//		}, this), 1000);
 
 		L.DomEvent
 			.on(document, 'touchmove', this._onMove, this)
@@ -7518,8 +7518,16 @@ L.Map.Tap = L.Handler.extend({
 		        e.screenX, e.screenY,
 		        e.clientX, e.clientY,
 		        false, false, false, false, 0, null);
-
-		e.target.dispatchEvent(simulatedEvent);
+//		e.target.dispatchEvent(simulatedEvent);
+		if (e.target.className == 'leaflet-control-zoom-in'){
+			this._map.zoomControl._zoomIn(simulatedEvent);
+		}
+		else if (e.target.className == 'leaflet-control-zoom-out'){
+			this._map.zoomControl._zoomOut(simulatedEvent);
+		}
+		else {
+			this._map._fireMouseEvent(simulatedEvent);
+		}
 	}
 });
 

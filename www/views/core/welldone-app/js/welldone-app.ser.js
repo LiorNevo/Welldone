@@ -120,3 +120,22 @@ angular.module('welldoneApp').factory('deleteLocation',
 	 			localStorage.setItem("welldoneLocations", angular.toJson(newLocations));
 	 		}
 	 	} ]);
+angular.module('welldoneApp').factory('clickToMap',
+	 	[ '$mdMedia','$mdDialog','mapCtrl', function($mdMedia, $mdDialog, mapCtrl) {
+	 		return function(ev, location){
+	 			var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+	 			var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
+	 		    /*----------------------------------------------------------------------------------------------------*/
+	 			$mdDialog.show({
+	 			    controller: mapCtrl(),
+	 			    templateUrl: 'views/locations/templates/map-dialog.html',
+	 			    parent: angular.element(document.body),
+	 			    targetEvent: ev,
+	 			    clickOutsideToClose: true,
+	 			    fullscreen: useFullScreen,
+	 			    locals: {
+	 			    	location: location
+	 			    }
+	 			});
+	 		}
+	 	} ]);

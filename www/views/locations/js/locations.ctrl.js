@@ -9,7 +9,7 @@ angular.module('locApp', []).controller('locCtrl',[
                  '$mdMedia',
                  'locationDialogCtrl',
                  'loadAllCategories',
-                 'mapCtrl',
+                 'clickToMap',
                  function(
                 		 $scope, 
                 		 closeSideBar, 
@@ -21,7 +21,7 @@ angular.module('locApp', []).controller('locCtrl',[
                 		 $mdMedia,
                 		 locationDialogCtrl,
                 		 loadAllCategories,
-                		 mapCtrl){
+                		 clickToMap){
 	closeSideBar();
 	navBarTitle('Locations');
 	toolbarActions([{
@@ -63,6 +63,7 @@ angular.module('locApp', []).controller('locCtrl',[
 	
 	/*----------------------------------------------------------------------------------------------------*/
 	$scope.deleteLocation = function(location, ev, index) {
+		ev.stopImmediatePropagation();
 		var confirmDelete = $mdDialog
 				.confirm()
 				.title('Delete Location?')
@@ -101,20 +102,5 @@ angular.module('locApp', []).controller('locCtrl',[
 		
 	}
 	/*----------------------------------------------------------------------------------------------------*/
-	$scope.clickToMap = function(ev, location){
-		var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
-	    /*----------------------------------------------------------------------------------------------------*/
-		$mdDialog.show({
-		    controller: mapCtrl(),
-		    templateUrl: 'views/locations/templates/map-dialog.html',
-		    parent: angular.element(document.body),
-		    targetEvent: ev,
-		    clickOutsideToClose: true,
-		    fullscreen: useFullScreen,
-		    locals: {
-		    	location: location
-		    }
-		});
-	}
+	$scope.clickToMap = clickToMap;
 }])

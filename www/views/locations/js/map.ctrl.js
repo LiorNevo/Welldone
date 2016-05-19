@@ -5,7 +5,7 @@ angular.module('locApp').factory('mapCtrl',
 	 				$scope.location = location;
 	 				$scope.globalAttr = globalAttr;
 	 				/*----------------------------------------------------------------------------------------------------*/
-	 				$scope.cancel = function(){
+	 				$scope.ok = function(){
 	 					$mdDialog.cancel();
 	 				}
 	 			}
