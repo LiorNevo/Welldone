@@ -36,11 +36,20 @@
 		</md-menu-item>
 		<md-menu-divider ng-if="(toolbarActions().length > 0)"></md-menu-divider>
 		<md-menu-item>
-				<md-button aria-label="english" ng-click='changeAvatar($event)'>
+				<md-button aria-label="changeAvatar" ng-click='changeAvatar($event)'>
 					<div flex layout="row">
 						<p class="toolbar-menu-button-text">{{globalAttr.changeAvatar}}</p>
 						<span flex></span>
 						<md-icon class="material-icons toolbar-icons">face</md-icon> 
+					</div>
+				</md-button>
+		</md-menu-item>
+		<md-menu-item>
+				<md-button aria-label="email" ng-click='gotoEmail()'>
+					<div flex layout="row">
+						<p class="toolbar-menu-button-text">Email</p>
+						<span flex></span>
+						<md-icon class="material-icons toolbar-icons">email</md-icon> 
 					</div>
 				</md-button>
 		</md-menu-item>

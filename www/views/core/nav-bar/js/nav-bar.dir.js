@@ -206,6 +206,7 @@ angular.module('navBarApp', []);
  					{"label":"Administration","icon":"settings","sref":"","type":"toggle",
  						"subItems":[
  						        {"label":"Change Avatar","icon":"face","sref":"ChangeAvatar","type":"link","subItems":null},
+ 						       {"label":"Email","icon":"email","sref":"Email","type":"link","subItems":null}
  									]
  					}]);
  			})
@@ -328,7 +329,7 @@ angular
 		.module('navBarApp')
 		.directive(
 				'toolbarMenu',
-				['avatarDialog','toolbarActions', function(avatarDialog, toolbarActions) {
+				['avatarDialog','toolbarActions','$state', function(avatarDialog, toolbarActions, $state) {
 					return {
 						scope : {
 							
@@ -353,6 +354,9 @@ angular
 									globalAttr.userAvatar = croppedImage;
 									localStorage.setItem("welldoneUserAvatar", croppedImage);
 								});
+							}
+							scope.gotoEmail = function(){
+								$state.go('Email');
 							}
 						}
 					};
