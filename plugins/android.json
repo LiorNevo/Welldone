@@ -16,15 +16,16 @@
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "com.exam.welldone"
         },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.exam.welldone"
-        },
-        "cordova-plugin-email-composer": {
-            "PACKAGE_NAME": "com.exam.welldone"
-        },
         "cordova-plugin-email": {
+            "PACKAGE_NAME": "com.exam.welldone"
+        },
+        "cordova-plugin-file": {
             "PACKAGE_NAME": "com.exam.welldone"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.exam.welldone"
+        }
+    }
 }

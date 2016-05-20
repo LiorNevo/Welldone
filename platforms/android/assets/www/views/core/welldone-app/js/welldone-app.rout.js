@@ -6,7 +6,8 @@ angular.module('welldoneApp', [
                                  'bottomToolbarApp', 
                                  'catApp', 
                                  'locApp',
-                                 'avatarApp', 
+                                 'avatarApp',
+                                 'emailApp',
                                  'ngAnimate', 
                                  'anim-in-out',
                                  'ngImgCrop',
@@ -38,5 +39,11 @@ angular.module('welldoneApp', [
 		url: '/ChangeAvatar',
 		templateUrl : 'views/core/change-avatar/templates/change-avatar.html',
 		controller: 'avatarCtrl'
+	})
+	
+	.state('Email', {
+		url: '/Email',
+		templateUrl : 'views/email/templates/email.html',
+		controller: 'emailCtrl'
 	});
 }])
