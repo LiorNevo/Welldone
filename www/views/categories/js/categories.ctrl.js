@@ -9,9 +9,18 @@ angular
 						'navBarTitle',
 						'toolbarActions',
 						'loadAllCategories',
+						'loadAllLocations',
 						'saveCategory',
 						'deleteCategory',
-						function($scope, closeSideBar, $mdDialog, navBarTitle, toolbarActions, loadAllCategories, saveCategory, deleteCategory) {
+						function($scope, 
+								closeSideBar, 
+								$mdDialog, 
+								navBarTitle, 
+								toolbarActions, 
+								loadAllCategories,
+								loadAllLocations,
+								saveCategory, 
+								deleteCategory) {
 							closeSideBar();
 							navBarTitle('Categories');
 							toolbarActions([{
@@ -23,6 +32,22 @@ angular
 							}]);
 							$scope.globalAttr = globalAttr;
 							$scope.categories = loadAllCategories();
+							$scope.locations = loadAllLocations();
+							/*----------------------------------------------------------------------------------------------------*/
+							(function matchLocationToCategory(){
+								angular.forEach($scope.categories, function(category){
+									category.locations = [];
+					 				angular.forEach($scope.locations, function(location){
+					 					if (location.categories.toString().includes(category.name)){
+					 						category.locations.push(location);
+					 					}
+					 				})
+					 			});
+							})();
+							/*----------------------------------------------------------------------------------------------------*/
+							$scope.showCategoryLocations = function(category){
+								
+							}
 							/*----------------------------------------------------------------------------------------------------*/
 							$scope.deleteCategory = function(category, ev, index) {
 								var confirmDelete = $mdDialog

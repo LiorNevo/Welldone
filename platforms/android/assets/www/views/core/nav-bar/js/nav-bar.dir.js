@@ -20,9 +20,19 @@ angular.module('navBarApp', []);
  			'$mdSidenav',
  			'loadNavBar',
  			'navBarTitle',
- 			function($scope, $mdSidenav, loadNavBar, navBarTitle) {
+ 			'$state',
+ 			function($scope, $mdSidenav, loadNavBar, navBarTitle, $state) {
  				$scope.globalAttr = globalAttr;
  				$scope.navBarTitle = navBarTitle;
+ 				$scope.onSwipe = function(){
+ 					var title = navBarTitle();
+ 					if (title == 'Categories'){
+ 						$state.go('Locations');
+ 					}
+ 					else if (title == 'Locations'){
+ 						$state.go('Categories');
+ 					}
+ 				}
  				/*----------------------------------------------------------------------------------------------------*/
  				$scope.toggleSidenav = function() {
  					return $mdSidenav(

@@ -63,7 +63,7 @@ md-grid-tile-header {
 			<div class="md-list-item-text" layout="column">
 				<h3>{{location.name}}</h3>
 				<h4>{{location.address}}</h4>
-				<p>{{location.coordinates.lat.toFixed(2) + ' , ' + location.coordinates.lng.toFixed(2)}}</p>
+				<p ng-if="(location.coordinates.lat)">{{location.coordinates.lat.toFixed(2) + ' , ' + location.coordinates.lng.toFixed(2)}}</p>
 			</div>
 			<md-button class="md-fab md-raised md-mini fab-top md-secondary" ng-click="deleteLocation(location, $event, $index)">
 				<md-icon class="material-icons">delete</md-icon>
@@ -84,7 +84,7 @@ md-grid-tile-header {
 			<div class="md-list-item-text" layout="column">
 				<h3>{{location.name}}</h3>
 				<h4>{{location.address}}</h4>
-				<p>{{location.coordinates.lat.toFixed(2) + ' , ' + location.coordinates.lng.toFixed(2)}}</p>
+				<p ng-if="(location.coordinates.lat)">{{location.coordinates.lat.toFixed(2) + ' , ' + location.coordinates.lng.toFixed(2)}}</p>
 			</div>
 			<md-button class="md-fab md-raised md-mini fab-top md-secondary" ng-click="deleteLocation(location, $event, $index)">
 				<md-icon class="material-icons">delete</md-icon>

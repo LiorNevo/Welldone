@@ -1,10 +1,11 @@
 angular.module('locApp').factory('locationDialogCtrl',
-	 	[ '$mdDialog','saveLocation', 'loadAllCategories', function($mdDialog, saveLocation,loadAllCategories) {
+	 	[ '$mdDialog','saveLocation', 'loadAllCategories','clickToMap', function($mdDialog, saveLocation,loadAllCategories, clickToMap) {
 	 		return function() {
 	 			return function($scope, location){
 	 				$scope.location = location;
 	 				$scope.globalAttr = globalAttr;
 	 				$scope.categories = loadAllCategories();
+	 				$scope.clickToMap = clickToMap;
 	 				/*----------------------------------------------------------------------------------------------------*/
 	 				$scope.cancel = function(){
 	 					$mdDialog.cancel();
