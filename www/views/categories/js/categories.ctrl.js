@@ -12,6 +12,9 @@ angular
 						'loadAllLocations',
 						'saveCategory',
 						'deleteCategory',
+						'$mdMedia',
+						'$mdDialog',
+						'categoryLocationsCtrl',
 						function($scope, 
 								closeSideBar, 
 								$mdDialog, 
@@ -20,7 +23,10 @@ angular
 								loadAllCategories,
 								loadAllLocations,
 								saveCategory, 
-								deleteCategory) {
+								deleteCategory,
+								$mdMedia,
+								$mdDialog,
+								categoryLocationsCtrl) {
 							closeSideBar();
 							navBarTitle('Categories');
 							toolbarActions([{
@@ -45,8 +51,21 @@ angular
 					 			});
 							})();
 							/*----------------------------------------------------------------------------------------------------*/
-							$scope.showCategoryLocations = function(category){
-								
+							$scope.showCategoryLocations = function(category, ev){
+								var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+								var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
+							    /*----------------------------------------------------------------------------------------------------*/
+								$mdDialog.show({
+								    controller: categoryLocationsCtrl(),
+								    templateUrl: 'views/categories/templates/category-locations-dialog.html',
+								    parent: angular.element(document.body),
+								    targetEvent: ev,
+								    clickOutsideToClose: true,
+								    fullscreen: useFullScreen,
+								    locals: {
+								    	category: category
+								    }
+								});
 							}
 							/*----------------------------------------------------------------------------------------------------*/
 							$scope.deleteCategory = function(category, ev, index) {

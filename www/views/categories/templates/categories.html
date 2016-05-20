@@ -51,7 +51,7 @@ md-grid-tile-header {
 			</form>
 			<md-grid-tile-footer layout-padding>
 				<md-button class="md-fab md-raised md-mini fab-top buttons" 
-	        		ng-click="showCategoryLocations(category)">
+	        		ng-click="showCategoryLocations(category, $event)">
 					<md-icon class="material-icons" 
 						ng-class="(category.locations.length == 0) ? 'inactive-button' : ''">remove_red_eye</md-icon>
 				</md-button>

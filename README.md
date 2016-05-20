@@ -8,7 +8,7 @@
 <p>The application screen has a bottom bar with two iconic buttons for navigation. 
 	You can also swipe left or right to switch the screen</p> 
 <p>All Locations are sorted by alphabetical order, and you can choose to view them grouped or ungrouped by category.</p>
-***The user can view only the locations assigned a specific category she chooses.
+<p>The user can view only the locations assigned a specific category she chooses.</p>
 <p>In the Locations view you can choose to see the definition of the item by clicking it, 
 	or view it in on an actual map by clicking on the "location icon" on the left</p>
 <p>In the map view, by pressing another location you change the coordinates of your location</p>  
