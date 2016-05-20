@@ -14,3 +14,4 @@
 <p>In the map view, by pressing another location you change the coordinates of your location</p>  
 <p>When you click on a location, the device will vibrate. Don't be alarmed :)</p>
 ***The application exposes a share button which allows sending an email with the list of locations and categories in json format as an attachment (via native bridge support).
+<img src="https://github.com/LiorNevo/Welldone/blob/master/www/domain-uml/exam_0_0.jpg">
