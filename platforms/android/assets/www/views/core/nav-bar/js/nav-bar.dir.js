@@ -29,7 +29,7 @@ angular.module('navBarApp', []);
  					if (title == 'Categories'){
  						$state.go('Locations');
  					}
- 					else if (title == 'Locations'){
+ 					else {
  						$state.go('Categories');
  					}
  				}

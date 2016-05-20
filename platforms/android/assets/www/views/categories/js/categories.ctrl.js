@@ -9,9 +9,24 @@ angular
 						'navBarTitle',
 						'toolbarActions',
 						'loadAllCategories',
+						'loadAllLocations',
 						'saveCategory',
 						'deleteCategory',
-						function($scope, closeSideBar, $mdDialog, navBarTitle, toolbarActions, loadAllCategories, saveCategory, deleteCategory) {
+						'$mdMedia',
+						'$mdDialog',
+						'categoryLocationsCtrl',
+						function($scope, 
+								closeSideBar, 
+								$mdDialog, 
+								navBarTitle, 
+								toolbarActions, 
+								loadAllCategories,
+								loadAllLocations,
+								saveCategory, 
+								deleteCategory,
+								$mdMedia,
+								$mdDialog,
+								categoryLocationsCtrl) {
 							closeSideBar();
 							navBarTitle('Categories');
 							toolbarActions([{
@@ -23,6 +38,35 @@ angular
 							}]);
 							$scope.globalAttr = globalAttr;
 							$scope.categories = loadAllCategories();
+							$scope.locations = loadAllLocations();
+							/*----------------------------------------------------------------------------------------------------*/
+							(function matchLocationToCategory(){
+								angular.forEach($scope.categories, function(category){
+									category.locations = [];
+					 				angular.forEach($scope.locations, function(location){
+					 					if (location.categories.toString().includes(category.name)){
+					 						category.locations.push(location);
+					 					}
+					 				})
+					 			});
+							})();
+							/*----------------------------------------------------------------------------------------------------*/
+							$scope.showCategoryLocations = function(category, ev){
+								var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+								var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
+							    /*----------------------------------------------------------------------------------------------------*/
+								$mdDialog.show({
+								    controller: categoryLocationsCtrl(),
+								    templateUrl: 'views/categories/templates/category-locations-dialog.html',
+								    parent: angular.element(document.body),
+								    targetEvent: ev,
+								    clickOutsideToClose: true,
+								    fullscreen: useFullScreen,
+								    locals: {
+								    	category: category
+								    }
+								});
+							}
 							/*----------------------------------------------------------------------------------------------------*/
 							$scope.deleteCategory = function(category, ev, index) {
 								var confirmDelete = $mdDialog
