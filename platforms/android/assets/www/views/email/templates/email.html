@@ -12,6 +12,15 @@
 <md-content flex class="home-content" >
 	<md-whiteframe class="md-whiteframe-1dp main-whiteframe main-whiteframe"
 			layout="column" flex>
+			<md-content class="md-padding" layout="column">
+				<md-chips
+					ng-pattern="/^.+@.+\..+$/"
+      				ng-model="toEmails"
+      				placeholder="Enter Emails"
+      				secondary-placeholder="Only Emails Please"
+      				md-transform-chip="newChip($chip)"
+      				md-separator-keys="customKeys"></md-chips>
+			</md-content>
 			<md-button class="md-fab md-raised md-mini fab-top md-secondary map-button" ng-click="email()">
 				<md-icon class="material-icons">email</md-icon>
 			</md-button>
