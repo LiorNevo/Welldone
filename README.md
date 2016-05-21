@@ -17,4 +17,5 @@
 <p>In the map view, by pressing another location you change the coordinates of your location</p>  
 <p>When you click on a location, the device will vibrate. Don't be alarmed :)</p>
 <p>You can also, at any time, send your Categories and Locations via email in a json format</p>
+# UML
 <img src="https://github.com/LiorNevo/Welldone/blob/master/www/domain-uml/exam_0_0.jpg">
